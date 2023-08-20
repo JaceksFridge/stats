@@ -1,7 +1,0 @@
-file,lines
-kenn.py,35
-hey.py,1
-hello.js,8
-index.js,0
-test.html,0
-indexxi,0
