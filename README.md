@@ -21,7 +21,7 @@
 1. Download:
    
    ```
-   pip install git+https://github.com/your_username/your_repository_name.git
+   pip install git+https://github.com/JaceksFridge/stats.git
    ```
 2. Generate stats.txt file
    
