@@ -2628,13 +2628,6 @@
       ]
    },
    {
-      "name":"SVG",
-      "type":"data",
-      "extensions":[
-         ".svg"
-      ]
-   },
-   {
       "name":"Sage",
       "type":"programming",
       "extensions":[
@@ -3163,8 +3156,6 @@
          ".tmPreferences",
          ".tmSnippet",
          ".tmTheme",
-         ".ts",
-         ".tsx",
          ".ui",
          ".urdf",
          ".ux",

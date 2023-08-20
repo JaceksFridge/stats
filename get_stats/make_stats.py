@@ -36,6 +36,10 @@ def main():
             root, ext = os.path.splitext(file)
             if ext not in exts_tresor:
                 continue
+            if file == "stats.txt":
+                continue
+            if file == "package.json":
+                continue
             else:
                 file_tresor.append([file, count_lines(file), exts_tresor[ext]])
             
