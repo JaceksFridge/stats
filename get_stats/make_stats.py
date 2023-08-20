@@ -27,7 +27,7 @@ def main():
         if ".next" in dirnames:
             dirnames.remove(".next")
         if "node_modules" in dirnames:
-            dirnames.remove("mode_modules")
+            dirnames.remove("node_modules")
         if "venv" in dirnames:
             dirnames.remove("venv")
         
