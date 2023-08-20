@@ -19,18 +19,25 @@ def main():
     file_tresor = []
     
     for dirpath, dirnames, filenames in os.walk(path):
+        
         if "myenv" in dirnames:
             dirnames.remove("myenv")
         if ".git" in dirnames:
             dirnames.remove(".git")
-
+        if ".next" in dirnames:
+            dirnames.remove(".next")
+        if "node_modules" in dirnames:
+            dirnames.remove("mode_modules")
+        if "venv" in dirnames:
+            dirnames.remove("venv")
+        
+        os.chdir(dirpath)
         for file in filenames:
-            full_path = os.path.join(dirpath, file)
             root, ext = os.path.splitext(file)
             if ext not in exts_tresor:
                 continue
             else:
-                file_tresor.append([full_path, count_lines(file), exts_tresor[ext]])
+                file_tresor.append([dirnames +file, count_lines(file), exts_tresor[ext]])
             
     file_tresor = sorted(file_tresor, key=lambda x: x[1], reverse=True)
     table = make_table(file_tresor)
