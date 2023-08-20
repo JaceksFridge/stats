@@ -6,7 +6,11 @@ setup(
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'getstats = get_stats/make_stats:main',
+            'getstats = get_stats.make_stats:main',
         ],
     },
+    install_requires=[
+        'tabulate',
+    ],
+    include_package_data=True
 )
