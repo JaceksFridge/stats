@@ -1,1 +1,6 @@
 myenv
+__pycache__
+build
+dist
+*.egg-info/
+README.md
