@@ -4,12 +4,10 @@ import os
 import json
 
 
-ext = ".json"
-
 def exts_dict():
     cur_path = os.path.dirname(os.path.abspath(__file__))
-    lang_path = os.path.join(cur_path, "data", "languages.json")
-    
+    lang_path = os.path.join(cur_path, "languages.json")
+
     exts = {}
     with open(lang_path, "r") as file:
         data = json.load(file)
