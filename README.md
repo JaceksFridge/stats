@@ -26,7 +26,7 @@
 2. Generate stats.txt file
    
    ```
-   getstas
+   getstats
    ```
 
 
