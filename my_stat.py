@@ -6,6 +6,8 @@ import os
 import csv
 from tabulate import tabulate
 
+
+
 def main():
     
     path = os.getcwd()
@@ -21,17 +23,17 @@ def main():
         if ".git" in dirnames:
             dirnames.remove(".git")
         
-        
-        
         os.chdir(dirpath)
         for file in filenames:
-            
             if file == ".DS_Store":
                 continue
             file_tresor.append([file, count_lines(file)])
-
+            
     table = make_table(file_tresor)
+    stat_file = make_stat_file(path, table)
     
+    
+
     
 
 def count_lines(file):
@@ -46,18 +48,24 @@ def count_lines(file):
                     continue
                 else:
                     count += 1
-            
     except Exception as e:
         print(f"Error reading file {file}: {e}")
         return None
-    
     return count
 
 
 def make_table(file_tresor):
     headers =["files","lines"]
-    print(tabulate(file_tresor, headers, tablefmt="rst"))    
-    
+    table = tabulate(file_tresor, headers, tablefmt="rst")
+    return table
+
+
+
+def make_stat_file(path, table):
+    stats_path = os.path.join(path, "stats.txt")
+    with open(stats_path, "w") as stats_file:
+        stats_file.write(table)
+            
     
 if __name__ == "__main__":
     main()

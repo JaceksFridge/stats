@@ -1,0 +1,10 @@
+==========  =======
+files         lines
+==========  =======
+kenn.py          48
+my_stat.py       45
+stats.txt         1
+hello.js        143
+index.js          0
+test.html         0
+==========  =======
