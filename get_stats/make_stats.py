@@ -4,7 +4,8 @@
 import os
 import csv
 from tabulate import tabulate
-from exts import exts_dict
+from get_stats.exts import exts_dict
+
 
 
 exts_tresor = exts_dict()
