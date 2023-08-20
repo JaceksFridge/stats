@@ -4,14 +4,15 @@
 import os
 import csv
 from tabulate import tabulate
+from exts import exts_dict
 
+
+exts_tresor = exts_dict()
 
 
 def main():
     
     path = os.getcwd()
-    stats_path = os.path.join(path, "kenn.py")
-    print(count_lines(stats_path))
     
     file_tresor = []
     
@@ -24,15 +25,17 @@ def main():
         
         os.chdir(dirpath)
         for file in filenames:
-            if file == ".DS_Store":
+            root, ext = os.path.splitext(file)
+            if ext not in exts_tresor:
                 continue
-            file_tresor.append([file, count_lines(file)])
+            else:
+                file_tresor.append([file, count_lines(file), exts_tresor[ext]])
             
+    file_tresor = sorted(file_tresor, key=lambda x: x[1], reverse=True)
     table = make_table(file_tresor)
     stat_file = make_stat_file(path, table)
     
     
-
     
 
 def count_lines(file):
@@ -54,7 +57,7 @@ def count_lines(file):
 
 
 def make_table(file_tresor):
-    headers =["files","lines"]
+    headers =["files","lines","language"]
     table = tabulate(file_tresor, headers, tablefmt="rst")
     return table
 

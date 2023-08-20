@@ -1,0 +1,15 @@
+====================  =======  ==========
+files                   lines  language
+====================  =======  ==========
+xref-make_stats.html     6364  HTML
+languages.json           3377  JSON
+Analysis-00.toc           487  TeX
+PYZ-00.toc                319  TeX
+EXE-00.toc                185  TeX
+PKG-00.toc                178  TeX
+make_stats.py              48  Python
+warn-make_stats.txt        21  Text
+exts.py                    18  Python
+stats.txt                  15  Text
+__init__.py                 0  Python
+====================  =======  ==========
