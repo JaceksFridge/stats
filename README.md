@@ -1,10 +1,10 @@
-# MyStats
+# GetStats
 
-`MyStats` is a powerful script that helps you analyze and gather statistics about your files.
+`GetStats` is a powerful script that helps you analyze and gather statistics about your files.
 
 ## Table of Contents
-- [Features](#features)
 - [Installation](#installation)
+- [Features](#features)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
@@ -18,20 +18,17 @@
 
 ## Installation
 
-1. Clone the repository:
-   \```
-   git clone https://github.com/yourusername/mystats_project.git
-   \```
+1. Download:
+   
+   ```
+   pip install git+https://github.com/your_username/your_repository_name.git
+   ```
+2. Generate stats.txt file
+   
+   ```
+   getsats
+   ```
 
-2. Navigate to the project directory:
-   \```
-   cd mystats_project
-   \```
-
-3. Install using `pip`:
-   \```
-   pip install .
-   \```
 
 ## Usage
 
