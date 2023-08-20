@@ -37,7 +37,7 @@ def main():
             if ext not in exts_tresor:
                 continue
             else:
-                file_tresor.append([dirnames +file, count_lines(file), exts_tresor[ext]])
+                file_tresor.append([file, count_lines(file), exts_tresor[ext]])
             
     file_tresor = sorted(file_tresor, key=lambda x: x[1], reverse=True)
     table = make_table(file_tresor)
