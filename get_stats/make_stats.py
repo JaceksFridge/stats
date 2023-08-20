@@ -5,6 +5,7 @@ import os
 import csv
 from tabulate import tabulate
 from get_stats.exts import exts_dict
+import chardet
 
 
 
@@ -42,8 +43,11 @@ def main():
 def count_lines(file):
     count = 0
     try:
-        with open(file, "r") as open_file:
+        rawdata = open(file, "rb").read()
+        encoding_result = chardet.detect(rawdata)
+        charenc = encoding_result['encoding']
 
+        with open(file, "r", encoding=charenc) as open_file:
             for line in open_file:
                 if line.strip() == "":
                     continue
@@ -53,8 +57,10 @@ def count_lines(file):
                     count += 1
     except Exception as e:
         print(f"Error reading file {file}: {e}")
-        return None
+        return 0
+
     return count
+
 
 
 def make_table(file_tresor):

@@ -10,7 +10,7 @@ setup(
         ],
     },
     install_requires=[
-        'tabulate',
+        'tabulate', 'cardet'
     ],
     include_package_data=True
 )
