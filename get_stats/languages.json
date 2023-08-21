@@ -1311,16 +1311,6 @@
       ]
    },
    {
-      "name":"JSON",
-      "type":"data",
-      "extensions":[
-         ".json",
-         ".geojson",
-         ".lock",
-         ".topojson"
-      ]
-   },
-   {
       "name":"JSON5",
       "type":"data",
       "extensions":[
