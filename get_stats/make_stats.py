@@ -44,6 +44,8 @@ def main():
                 file_tresor.append([file, count_lines(file), exts_tresor[ext]])
             
     file_tresor = sorted(file_tresor, key=lambda x: x[1], reverse=True)
+    
+    make_lang_table(file_tresor)
     table = make_table(file_tresor)
     stat_file = make_stat_file(path, table)
     
@@ -78,6 +80,9 @@ def make_table(file_tresor):
     table = tabulate(file_tresor, headers, tablefmt="rst")
     return table
 
+def make_lang_table(file_tresor):
+    for file in file_tresor:
+        print(file)
 
 
 def make_stat_file(path, table):
