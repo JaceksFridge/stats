@@ -1,6 +1,6 @@
 # GetStats
 
-`GetStats` is a powerful script that helps you analyze and gather statistics about your files.
+`GetStats` is a powerful script that creates statistics relevant for your react projects.
 
 ## Table of Contents
 - [Installation](#installation)
