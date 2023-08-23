@@ -1,8 +1,11 @@
 
 
 #!/usr/bin/env python3
+import io
+import sys
 import os
 import csv
+import re
 from tabulate import tabulate
 from get_stats.exts import exts_dict
 import chardet
@@ -17,6 +20,7 @@ def main():
     path = os.getcwd()
     
     file_tresor = []
+    hook_tresor = []
     
     for dirpath, dirnames, filenames in os.walk(path):
         
@@ -42,13 +46,21 @@ def main():
                 continue
             else:
                 file_tresor.append([file, count_lines(file), exts_tresor[ext]])
+                hook_count = count_hooks(file)
+                if hook_count['all hooks'] == 0:
+                    continue
+                else:
+                    hook_tresor.append(list(hook_count.values()))
+                
             
     file_tresor = sorted(file_tresor, key=lambda x: x[1], reverse=True)
+    hook_tresor = sorted(hook_tresor, key=lambda x: x[0], reverse=True)
     
     lang_df = make_lang_df(file_tresor)
     lang_chart = make_lang_chart(lang_df)
-    table = make_table(file_tresor)
-    stat_file = make_stat_file(path, table, lang_chart)
+    hooks_table = make_hooks_table(hook_tresor)
+    files_table = make_files_table(file_tresor)
+    stat_file = make_stat_file(path, files_table, hooks_table, lang_chart)
     
     
     
@@ -76,7 +88,7 @@ def count_lines(file):
 
 
 
-def make_table(file_tresor):
+def make_files_table(file_tresor):
     headers =["files","lines","language"]
     table = tabulate(file_tresor, headers, tablefmt="rst")
     return table
@@ -92,17 +104,19 @@ def make_lang_df(file_tresor):
     return lang_df
 
 
-def make_stat_file(path, table, lang_chart):
+def make_stat_file(path, files_table, hooks_table, lang_chart):
     stats_path = os.path.join(path, "stats.txt")
     with open(stats_path, "w") as stats_file:
         stats_file.write("\n\n")
-        stats_file.write(lang_chart)  
+        stats_file.write(lang_chart)
         stats_file.write("\n\n") 
-        stats_file.write(table)
+        stats_file.write(files_table)
+        stats_file.write("\n\n")
+        stats_file.write("\n\n")
+        stats_file.write(hooks_table)
 
  
-import io
-import sys
+
 
 def make_lang_chart(lang_df):
     data = []
@@ -117,6 +131,35 @@ def make_lang_chart(lang_df):
     sys.stdout = old_stdout
 
     return new_stdout.getvalue()
+
+
+def count_hooks(file):
+    hook_count = {
+        "all hooks": 0
+    }
+    hook_patterns = {
+        "useState": r"const \[\w+\s*,\s*\w+\]\s*\=\s*useState\([^)]*\)",
+        "useEffect": r"useEffect\(\s*\(\)\s*=>\s*\{(?:[^}]+|\n)+\}(,\s*\[.*?\]\s*)?\)",
+        "useContext": r"const\s*([\w\s{},]+)\s*=\s*useContext\(\s*[-a-zA-Z0-9_]+\s*\)",
+        "otherHooks": r"\buse(?!State\b|Effect\b|Context\b)(Callback|DebugValue|DeferredValue|Id|ImperativeHandle|InsertionEffect|LayoutEffect|Memo|Reducer|Ref|SyncExternalStore|Transition)\b",
+        "customHooks": r"\buse(?!State\b|Effect\b|Context\b|Callback\b|DebugValue\b|DeferredValue\b|Id\b|ImperativeHandle\b|InsertionEffect\b|LayoutEffect\b|Memo\b|Reducer\b|Ref\b|SyncExternalStore\b|Transition\b)[A-Z]\w+\("
+    }
+    
+    with open(file, "r") as file:
+        content = file.read()
+        
+        for hook, pattern in hook_patterns.items():
+            matches = re.findall(pattern, content)
+            hook_count[hook] = len(matches)
+            hook_count["all hooks"] += len(matches)
+    return hook_count
+
+
+def make_hooks_table(hook_tresor):
+    headers =["all hooks","useState","useEffect","useContext","otherHooks","customHooks"]
+    table = tabulate(hook_tresor, headers, tablefmt="presto")
+    return table
+
     
     
 if __name__ == "__main__":

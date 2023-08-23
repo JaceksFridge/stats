@@ -1,14 +1,22 @@
 
 
-JSON   | 96.95 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-Python |  3.05 ▓░░░░░░░░░░░░░░░░░░░
+JavaScript | 59.18 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+Python     | 40.82 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░
 
 
-==============  =======  ==========
-files             lines  language
-==============  =======  ==========
-languages.json     3368  JSON
-make_stats.py        88  Python
-exts.py              18  Python
-__init__.py           0  Python
-==============  =======  ==========
+=============  =======  ==========
+files            lines  language
+=============  =======  ==========
+make_stats.py      122  Python
+Forms.js           103  JavaScript
+Forms copy.js      100  JavaScript
+exts.py             18  Python
+__init__.py          0  Python
+=============  =======  ==========
+
+
+
+   all hooks |   useState |   useEffect |   useContext |   otherHooks |   customHooks
+-------------+------------+-------------+--------------+--------------+---------------
+           6 |          2 |           1 |            1 |            0 |             2
+           5 |          2 |           0 |            1 |            0 |             2
