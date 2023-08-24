@@ -29,6 +29,11 @@
    getstats
    ```
 
+3. To Remove the Cache
+```
+pip install --force-reinstall --no-cache-dir git+https://github.com/JaceksFridge/stats.git
+```
+
 
 ## Usage
 
@@ -44,9 +49,7 @@ generatestats [optional arguments]
 generatestats --directory /path/to/my/directory
 \```
 
-\```
-pip install --force-reinstall --no-cache-dir git+https://github.com/JaceksFridge/stats.git
-\```
+
 
 ## Contributing
 
