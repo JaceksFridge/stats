@@ -44,6 +44,10 @@ generatestats [optional arguments]
 generatestats --directory /path/to/my/directory
 \```
 
+\```
+pip install --force-reinstall --no-cache-dir git+https://github.com/JaceksFridge/stats.git
+\```
+
 ## Contributing
 
 Contributions are always welcome!
