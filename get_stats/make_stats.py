@@ -13,7 +13,7 @@ import pandas as pd
 import asciibars as a_bars
 
 exts_tresor = exts_dict()
-
+table_size = 25
 
 def main():
     
@@ -52,15 +52,17 @@ def main():
                 else:
                     hook_tresor.append(list(hook_count.values()))
                 
-            
-    file_tresor = sorted(file_tresor, key=lambda x: x[1], reverse=True)
+    og_length = len(file_tresor)
+    file_tresor = sorted(file_tresor, key=lambda x: x[1], reverse=True)[:table_size]
+    cs_length = len(file_tresor)
     hook_tresor = sorted(hook_tresor, key=lambda x: x[0], reverse=True)
+    
     
     lang_df = make_lang_df(file_tresor)
     lang_chart = make_lang_chart(lang_df)
     hooks_table = make_hooks_table(hook_tresor)
     files_table = make_files_table(file_tresor)
-    stat_file = make_stat_file(path, files_table, hooks_table, lang_chart)
+    stat_file = make_stat_file(path, files_table, hooks_table, lang_chart, og_length, cs_length)
     
     
     
@@ -104,20 +106,22 @@ def make_lang_df(file_tresor):
     return lang_df
 
 
-def make_stat_file(path, files_table, hooks_table, lang_chart):
+def make_stat_file(path, files_table, hooks_table, lang_chart, og_length, cs_length):
     stats_path = os.path.join(path, "stats.txt")
     with open(stats_path, "w") as stats_file:
         stats_file.write("\n\n")
         stats_file.write(lang_chart)
         stats_file.write("\n\n") 
         stats_file.write(files_table)
+        stats_file.write(f"\n\n * showing {cs_length}/{og_length} files")
+        stats_file.write("\n * run 'change_table' to change view")
         stats_file.write("\n\n")
         stats_file.write("\n\n")
         stats_file.write(hooks_table)
 
  
 
-
+# Bar Chart 1
 def make_lang_chart(lang_df):
     data = []
     for _, row in lang_df.iterrows():
@@ -127,7 +131,7 @@ def make_lang_chart(lang_df):
     new_stdout = io.StringIO()
     sys.stdout = new_stdout
 
-    a_bars.plot(data, unit='▓', neg_unit='░')
+    a_bars.plot(data, unit='▓', neg_unit='░', neg_max=100, count_pf='%')
     sys.stdout = old_stdout
 
     return new_stdout.getvalue()
@@ -155,10 +159,18 @@ def count_hooks(file):
     return hook_count
 
 
+# Hooks Table
 def make_hooks_table(hook_tresor):
     headers =["all hooks","useState","useEffect","useContext","otherHooks","customHooks"]
     table = tabulate(hook_tresor, headers, tablefmt="presto")
     return table
+
+
+def change_table():
+    
+    row_number = input("How many rows do you want to show?")
+    table_size = row_number
+    print(table_size)
 
     
     

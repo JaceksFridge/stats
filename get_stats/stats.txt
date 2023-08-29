@@ -1,18 +1,23 @@
 
 
-JavaScript | 59.18 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-Python     | 40.82 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░
+JavaScript | 57.67% ▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░
+Python     | 42.33% ▓▓▓▓▓▓▓▓░░░░░░░░░░░░
+                                    100%
 
 
-=============  =======  ==========
-files            lines  language
-=============  =======  ==========
-make_stats.py      122  Python
-Forms.js           103  JavaScript
-Forms copy.js      100  JavaScript
-exts.py             18  Python
-__init__.py          0  Python
-=============  =======  ==========
+==============  =======  ==========
+files             lines  language
+==============  =======  ==========
+make_stats.py       131  Python
+Forms.js            103  JavaScript
+Forms copy.js       100  JavaScript
+exts.py              18  Python
+__init__.py           0  Python
+change_view.py        0  Python
+==============  =======  ==========
+
+ * showing 6/6 files
+ * run 'change_table' to change view
 
 
 

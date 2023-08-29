@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="get_stats",
+    name="react-stats",
     version="0.3",
     packages=find_packages(),
     entry_points={
@@ -10,7 +10,10 @@ setup(
         ],
     },
     install_requires=[
-        'tabulate', 'chardet'
+        'tabulate',
+        'chardet',
+        'pandas',
+        'asciibars'
     ],
     include_package_data=True
 )
